@@ -2808,11 +2808,10 @@ settingsBtn.onclick = function () {
 
             eSplit.forEach((editor) => {
               if (editor === queryString['id']) {
-                var newEditor = editors + ':' + txt;
                 if (newVar === '') {
-                  newVar = newEditor;
+                  newVar = newVar + editor;
                 } else {
-                  newVar = newVar + ':' + newEditor;
+                  newVar = newVar + ':' + editor;
                 }
               }
             });

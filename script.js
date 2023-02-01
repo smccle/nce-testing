@@ -16,7 +16,7 @@ var fls;
 var cType;
 var rat;
 var resources = [];
-var settings;
+var settings = {};
 var clearEditor;
 var auto;
 
@@ -28,6 +28,7 @@ window.rat;
 window.cType;
 window.fls;
 window.MODES;
+window.settings = {};
 window.ftype = 'html';
 window.sf;
 window.s;
@@ -2069,18 +2070,24 @@ function validate(Data) {
     Data.settings !== null &&
     Data.settings !== ''
   ) {
-    settings = Data.settings;
+    window.settings = Data.settings;
   }
-  if (settings !== undefined) {
+  if (window.settings !== undefined) {
     function loadCode() {
-      if (settings['Compressed'] === 'true' && Data['compressed'] === 'true') {
+      if (
+        window.settings['Compressed'] === 'true' &&
+        Data['compressed'] === 'true'
+      ) {
         window.fls = JSON.parse(
           window.LZString.decompress(window.Base64.decode(Data['afs']))
         );
       } else {
         window.fls = Data['afs'];
       }
-      if (settings['Compressed'] === 'true' && Data['compressed'] === 'true') {
+      if (
+        window.settings['Compressed'] === 'true' &&
+        Data['compressed'] === 'true'
+      ) {
         window.resources = JSON.parse(
           window.LZString.decompress(window.Base64.decode(Data.sources))
         );
@@ -2162,7 +2169,7 @@ function validate(Data) {
         document.getElementById('link').innerHTML =
           document.getElementById('link').href;
         document.getElementById('link').rel = 'noopener noreferrer';
-        if (settings['Autosave'] === 'true') {
+        if (window.settings['Autosave'] === 'true') {
           clearInterval(window.auto);
           window.auto = setInterval(saveCode, 30000);
         }
@@ -2253,7 +2260,7 @@ function validate(Data) {
         document.getElementById('link').innerHTML =
           document.getElementById('link').href;
         document.getElementById('link').rel = 'noopener noreferrer';
-        if (settings['Autosave'] === 'true') {
+        if (window.settings['Autosave'] === 'true') {
           clearInterval(window.auto);
           window.auto = setInterval(saveCode, 30000);
         }
@@ -2280,7 +2287,7 @@ function validate(Data) {
         document.querySelector('.language-picker').style.display = 'none';
         document.querySelector('.btn-dark-light').style.display = 'none';
         settings.style.display = '';
-        if (settings['Autosave'] === 'true') {
+        if (window.settings['Autosave'] === 'true') {
           clearInterval(window.auto);
           window.auto = setInterval(saveCode, 30000);
         }
@@ -2291,7 +2298,7 @@ function validate(Data) {
       splitData.forEach((data) => {
         var splitAccountData = data.split(':');
         if (splitAccountData[0] === getCookie('li')) {
-          if (settings['Editor Access'] === 'Only Me') {
+          if (window.settings['Editor Access'] === 'Only Me') {
             var sad = splitData[0].split(':');
             if (sad[0] === getCookie('li')) {
               loadCode();
@@ -2333,7 +2340,7 @@ function saveCode(run) {
   var fls = [];
   var data = {};
   if (
-    settings['Compressed'] === 'true' &&
+    window.settings['Compressed'] === 'true' &&
     window.afs !== undefined &&
     window.afs !== '' &&
     window.afs !== null &&
@@ -2384,7 +2391,7 @@ function saveCode(run) {
   ) {
     data['sources'] = window.resources;
     data['afs'] = window.afs;
-    data['settings'] = settings;
+    data['settings'] = window.settings;
     data['compressed'] = 'false';
 
     window.html2canvas(document.querySelector('.left'), {
@@ -2417,7 +2424,7 @@ function saveCode(run) {
   } else {
     data['sources'] = window.resources;
     data['afs'] = '';
-    data['settings'] = settings;
+    data['settings'] = window.settings;
     data['compressed'] = 'false';
 
     window.html2canvas(document.querySelector('.left'), {
@@ -2850,7 +2857,7 @@ settingsBtn.onclick = function () {
 
       s.innerHTML = selection;
       s.value = option;
-      if (settings[option] === selection) {
+      if (window.settings[option] === selection) {
         s.selected = true;
       }
 
@@ -2858,9 +2865,9 @@ settingsBtn.onclick = function () {
     });
 
     select.onchange = function () {
-      settings[this.options[this.selectedIndex].value] =
+      window.settings[this.options[this.selectedIndex].value] =
         this.options[this.selectedIndex].innerHTML;
-      if (settings['Autosave'] === 'true') {
+      if (window.settings['Autosave'] === 'true') {
         clearInterval(window.auto);
         window.auto = setInterval(saveCode, 30000);
       } else {

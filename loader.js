@@ -84,7 +84,7 @@ var afs,
 
 function loadcode() {
   var access;
-  if (window.localStorage.getItem('offline') !== true) {
+  if (window.localStorage.getItem('offline') !== 'true') {
     var splitData = window.acc.split(';');
     var sad = splitData[0].split(':');
     if (s['Preview Visibility'] === 'Only Me') {

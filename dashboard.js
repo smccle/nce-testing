@@ -210,7 +210,7 @@ document.getElementById('new').onclick = function () {
       JSON.stringify(accountData)
     );
     window.location.replace(
-      './editor.html?id=' + document.getElementById('name')
+      './editor.html?id=' + document.getElementById('name').value
     );
   } else {
     alert('please enter a name!');

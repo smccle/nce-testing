@@ -33,10 +33,10 @@
     			const key = e.message ? 'message' : 'data';
     			const data = e[key];
     			
-    			if (data.includes("sncon")) {
+    			if (data.includes("sncon") === true) {
     				var splitData = data.split(".///...//");
     				document.getElementById("log").innerHTML += splitData[0];
-    			} else if (data.includes("console.clear()")) {
+    			} else if (data.includes("console.clear()") === true) {
     				window.eval(data);
     			}
 			},false);

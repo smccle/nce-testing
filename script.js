@@ -10,7 +10,7 @@ if (
 var s;
 var sf;
 var ftype = 'html';
-var afs = {};
+var afs;
 var MODES;
 var fls;
 var cType;
@@ -19,6 +19,18 @@ var resources = [];
 var settings;
 var clearEditor;
 var auto;
+
+window.afs = {};
+window.resources = [];
+window.clearEditor;
+window.auto;
+window.rat;
+window.cType;
+window.fls;
+window.MODES;
+window.ftype = 'html';
+window.sf;
+window.s;
 
 const left = document.querySelector('.left'),
   right = document.querySelector('.right'),
@@ -1928,7 +1940,11 @@ dbBtn.onclick = function () {
 };
 
 window.addEventListener('keyup', () => {
-  window.afs[window.sf][window.s] = window.editor.getValue();
+  try {
+    window.afs[window.sf][window.s] = window.editor.getValue();
+  } catch (e) {
+    throw e;
+  }
 });
 
 document.getElementById('addResource').onclick = function () {

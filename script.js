@@ -16,7 +16,7 @@ var fls;
 var cType;
 var rat;
 var resources = [];
-var settings = {};
+var settings;
 var clearEditor;
 var auto;
 
@@ -28,7 +28,7 @@ window.rat;
 window.cType;
 window.fls;
 window.MODES;
-window.settings = {};
+window.settings;
 window.ftype = 'html';
 window.sf;
 window.s;

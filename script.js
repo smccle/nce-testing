@@ -2422,7 +2422,7 @@ function saveCode(run) {
               './view.html?id=' +
               queryString['id'] +
               '&f=' +
-              encodeURI(window.sf) +
+              encodeURIComponent(window.sf) +
               '.' +
               encodeURIComponent(window.s);
           }
@@ -2455,7 +2455,7 @@ function saveCode(run) {
               './view.html?id=' +
               queryString['id'] +
               '&f=' +
-              encodeURI(window.sf) +
+              encodeURIComponent(window.sf) +
               '.' +
               encodeURIComponent(window.s);
           }

@@ -2072,7 +2072,6 @@ function validate(Data) {
     settings = Data.settings;
   }
   if (settings !== undefined) {
-    alert('test');
     function loadCode() {
       if (settings['Compressed'] === 'true' && Data['compressed'] === 'true') {
         window.fls = JSON.parse(
@@ -2093,7 +2092,6 @@ function validate(Data) {
         window.fls !== '' &&
         window.fls['main'] !== undefined
       ) {
-        alert('test');
         var keys = Object.keys(window.fls);
         keys.forEach((folder) => {
           window.afs[folder] = window.fls[folder];
@@ -2183,7 +2181,6 @@ function validate(Data) {
           document.getElementById('deleteFile').style.display = 'none';
         }
       } else if (window.fls !== undefined && window.fls !== '') {
-        alert('test2');
         var keys = Object.keys(window.fls);
         var newOpt = document.createElement('option');
 
@@ -2262,43 +2259,31 @@ function validate(Data) {
         }
         settingsBtn.style.display = '';
       } else {
-        alert('test3');
         var newOpt = document.createElement('option');
-        alert('1');
 
         newOpt.innerHTML = 'main';
-        alert('2');
 
         document.querySelector('.folder-picker').appendChild(newOpt);
-        alert('3');
         window.afs['main'] = {};
-        alert('4');
         settingsBtn.style.display = '';
-        alert('5');
         document.querySelector('.folder-picker').style.display = '';
-        alert('6');
         window.sf =
           document.querySelector('.folder-picker').options[
             document.querySelector('.folder-picker').selectedIndex
           ].innerHTML;
-        alert('7');
         document.getElementById('editor').innerHTML =
           "<h1 style='text-align: center;'>No file selected.</h1>";
-        alert('8');
         document.getElementById('createFile').style.display = '';
         document.getElementById('addResource').style.display = 'none';
         document.getElementById('removeSources').style.display = 'none';
         document.getElementById('deleteFile').style.display = 'none';
         document.querySelector('.language-picker').style.display = 'none';
         document.querySelector('.btn-dark-light').style.display = 'none';
-        alert('9');
         settings.style.display = '';
-        alert('10');
         if (settings['Autosave'] === 'true') {
           clearInterval(window.auto);
           window.auto = setInterval(saveCode, 30000);
         }
-        alert('11');
       }
     }
     if (window.localStorage.getItem('offline') !== 'true') {
@@ -2802,7 +2787,7 @@ settingsBtn.onclick = function () {
           xhr.setRequestHeader('cache-control', 'no-cache');
 
           xhr.send(data);
-        } else if (window.localStorage.getItem('offline') === true) {
+        } else if (window.localStorage.getItem('offline') === 'true') {
           get(queryString['id']).then((val) => {
             var editordata = val;
             editordata['name'] = txt;

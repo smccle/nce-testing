@@ -19,7 +19,6 @@ function setLi(val) {
   }
   var db_version = parseInt(window.localStorage.getItem('db_version'));
   var lis = JSON.parse(window.localStorage.getItem('lis'));
-  alert(lis);
   if (lis.includes(val)) {
     window.localStorage.setItem('li', val);
   } else {

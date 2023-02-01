@@ -1,6 +1,6 @@
 import { get, set, del, clear, keys } from './db.js';
 
-var DEV = true;
+var DEV = false;
 
 window.onerror = function (msg, url, linenumber) {
   if (DEV === true) {
@@ -100,7 +100,6 @@ function loadcode() {
     access = true;
   }
   if (access === true) {
-    alert('test');
     var newResource;
     var url,
       filename,
@@ -109,21 +108,17 @@ function loadcode() {
       styl,
       count = -1;
     var split = queryString['f'].split('.');
-    alert('1');
     document.body.innerHTML =
       window.afs[split[0]][decodeURIComponent(split[1])];
-    alert('2');
     var titles = document.getElementsByTagName('title');
     if (!titles.length) {
       document.title = 'NCE View';
     } else {
       document.title = titles[0].innerHTML;
     }
-    alert('3');
     var scripts = document.body.getElementsByTagName('script');
     var styles = document.body.getElementsByTagName('link');
     var links = document.body.getElementsByTagName('a');
-    alert('4');
     Array.from({ length: links.length }, () => {
       count += 1;
       if (links[count].hasAttribute('href')) {
@@ -151,7 +146,6 @@ function loadcode() {
         }
       }
     });
-    alert('5');
     count = -1;
     Array.from({ length: styles.length }, () => {
       count += 1;
@@ -173,7 +167,6 @@ function loadcode() {
         }
       }
     });
-    alert('6');
     count = -1;
     Array.from({ length: scripts.length }, () => {
       count += 1;
@@ -838,7 +831,6 @@ function loadcode() {
           var newScript = document.createElement('script');
           newScript.innerHTML = code;
           document.body.appendChild(newScript);
-          alert('7');
         }
       } else {
         var code = scripts[count].innerHTML;
@@ -1194,25 +1186,18 @@ function loadcode() {
 
 function validate(Data) {
   var c = -1;
-  alert('1');
   if (Data['settings']['Compressed'] === 'true') {
     window.afs = JSON.parse(
       window.LZString.decompress(window.Base64.decode(Data['afs']))
     );
-    alert('2');
     window.resources = JSON.parse(
       window.LZString.decompress(window.Base64.decode(Data['sources']))
     );
-    alert('3');
   } else {
     window.afs = Data['afs'];
-    alert('4');
     window.resources = Data['sources'];
-    alert('5');
   }
   window.s = Data['settings'];
-  alert('6');
   window.acc = Data['account'];
-  alert('7');
   loadcode();
 }

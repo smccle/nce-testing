@@ -2686,7 +2686,7 @@ settingsBtn.onclick = function () {
         submit.innerHTML = '...';
         var txt = input.value;
 
-        if (txt !== '' && window.localStorage.getItem('offline') !== true) {
+        if (txt !== '' && window.localStorage.getItem('offline') !== 'true') {
           var data = JSON.stringify({
             name: txt,
           });

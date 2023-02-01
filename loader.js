@@ -1,6 +1,6 @@
 import { get, set, del, clear, keys } from './db.js';
 
-var DEV = false;
+var DEV = true;
 
 window.onerror = function (msg, url, linenumber) {
   if (DEV === true) {
@@ -51,7 +51,7 @@ window.onload = function () {
     xhr.setRequestHeader('cache-control', 'no-cache');
 
     xhr.send(data);
-  } else if (queryString['id'] !== undefined) {
+  } else if (queryString['id'] !== null && queryString['f'] !== undefined) {
     get(queryString['id']).then((val) => {
       validate(val);
     });
@@ -1182,18 +1182,25 @@ function loadcode() {
 
 function validate(Data) {
   var c = -1;
+  alert('1');
   if (Data['settings']['Compressed'] === 'true') {
     window.afs = JSON.parse(
       window.LZString.decompress(window.Base64.decode(Data['afs']))
     );
+    alert('2');
     window.resources = JSON.parse(
       window.LZString.decompress(window.Base64.decode(Data['sources']))
     );
+    alert('3');
   } else {
     window.afs = Data['afs'];
+    alert('4');
     window.resources = Data['sources'];
+    alert('5');
   }
   window.s = Data['settings'];
+  alert('6');
   window.acc = Data['account'];
+  alert('7');
   loadcode();
 }

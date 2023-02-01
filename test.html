@@ -1,0 +1,37 @@
+<div id="content"></div>
+<script type="module" src="db.js"></script>
+<script type="module">
+  import { get, set, del, clear, keys } from './db.js';
+
+  function setLi(val) {
+    if (window.localStorage.getItem('db_version') === null) {
+      window.localStorage.setItem('db_version', 0);
+    }
+
+    if (window.localStorage.getItem('lis') === null) {
+      window.localStorage.setItem('lis', JSON.stringify([]));
+    }
+    var db_version = parseInt(window.localStorage.getItem('db_version'));
+    var lis = JSON.parse(window.localStorage.getItem('lis'));
+    alert(lis);
+    if (lis.includes(val)) {
+      window.localStorage.setItem('li', val);
+    } else {
+      window.localStorage.setItem('li', val);
+      lis.push(val);
+      db_version += 1;
+      window.localStorage.setItem('lis', JSON.stringify(lis));
+      window.localStorage.setItem('db_version', db_version);
+    }
+  }
+
+  // setLi('wow');
+  // alert(window.localStorage.getItem('db_version'));
+  // // set('hb', { hello: 'no', bye: 'yes' });
+  // get('hb').then((val) => {
+  //   document.getElementById('content').innerHTML = JSON.stringify(val);
+  // });
+  get('wow').then((val) => {
+    document.getElementById('content').innerHTML = JSON.stringify(val);
+  });
+</script>

@@ -83,16 +83,20 @@ var afs,
   acc;
 
 function loadcode() {
-  var splitData = window.acc.split(';');
-  var sad = splitData[0].split(':');
   var access;
-  if (s['Preview Visibility'] === 'Only Me') {
-    if (sad[0] === getCookie('li')) {
+  if (window.localStorage.getItem('offline') !== true) {
+    var splitData = window.acc.split(';');
+    var sad = splitData[0].split(':');
+    if (s['Preview Visibility'] === 'Only Me') {
+      if (sad[0] === getCookie('li')) {
+        access = true;
+      } else {
+        access = false;
+      }
+    } else if (s['Preview Visibility'] === 'Shared With') {
       access = true;
-    } else {
-      access = false;
     }
-  } else if (s['Preview Visibility'] === 'Shared With') {
+  } else {
     access = true;
   }
   if (access === true) {

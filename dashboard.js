@@ -190,7 +190,7 @@ document.getElementById('new').onclick = function () {
   } else if (
     document.getElementById('name').value !== '' &&
     window.localStorage.getItem('offline') === 'true' &&
-    projects.includes(document.getElementById('name').value) !== true
+    pjs.includes(document.getElementById('name').value) !== true
   ) {
     set(document.getElementById('name').value, {
       name: document.getElementById('name').value,

@@ -2829,12 +2829,10 @@ settingsBtn.onclick = function () {
               window.localStorage.getItem('li'),
               JSON.stringify(accountData)
             );
-            del(queryString['id']).then(function () {
-              set(txt, editordata).then(function () {
-                window.location.replace('./editor.html?id=' + txt);
-                window.location.reload();
-              });
-            });
+            del(queryString['id']);
+            set(txt, editordata);
+            window.location.replace('./editor.html?id=' + txt);
+            window.location.reload();
           });
         } else {
           submit.innerHTML = 'Save';

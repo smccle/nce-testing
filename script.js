@@ -2885,10 +2885,16 @@ settingsBtn.onclick = function () {
     };
 
     name.innerHTML = '<b>' + option + ': </b>';
-
-    name.appendChild(select);
-    e.appendChild(name);
-    e.appendChild(split);
+    if (
+      window.localStorage.getItem('offline') === 'true' &&
+      (option === 'Editor Access' || option === 'Preview Visibility')
+    ) {
+      return;
+    } else {
+      name.appendChild(select);
+      e.appendChild(name);
+      e.appendChild(split);
+    }
   });
 };
 

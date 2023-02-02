@@ -1,3 +1,8 @@
+if (window.localStorage.getItem('offline') === 'true') {
+  alert('not available.');
+  window.location = './index.html';
+}
+
 var queryString = new Array();
 window.onload = function () {
   if (queryString.length == 0) {

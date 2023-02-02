@@ -1,3 +1,8 @@
+if (window.localStorage.getItem('offline') === 'true') {
+  alert('not available.');
+  window.location = './index.html';
+}
+
 var taken, username, name, mail, twostep;
 
 if (getCookie('li') === '' || getCookie('li') === null) {

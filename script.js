@@ -2809,6 +2809,12 @@ settingsBtn.onclick = function () {
             eSplit.forEach((editor) => {
               if (editor === queryString['id']) {
                 if (newVar === '') {
+                  newVar = newVar + txt;
+                } else {
+                  newVar = newVar + ':' + txt;
+                }
+              } else {
+                if (newVar === '') {
                   newVar = newVar + editor;
                 } else {
                   newVar = newVar + ':' + editor;

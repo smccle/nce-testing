@@ -2833,8 +2833,7 @@ settingsBtn.onclick = function () {
               );
               del(queryString['id']);
               set(txt, editordata);
-              location.replace('./editor.html?id=' + txt);
-              location.reload();
+              window.location = './editor.html?id=' + txt;
             } else {
               alert('editor exists.');
               return;

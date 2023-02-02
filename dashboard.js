@@ -219,7 +219,7 @@ document.getElementById('new').onclick = function () {
 
 document.querySelector('.btn-lo').onclick = function () {
   setCookie('li', '', 1);
-  window.localStorage.setItem('li', null);
+  window.localStorage.setItem('li', '');
   window.location.replace('./index.html');
 };
 

@@ -48,7 +48,8 @@
 
       if (
         getCookie('li') !== '' ||
-        window.localStorage.getItem('li') !== null
+        window.localStorage.getItem('li') !== null ||
+        window.localStorage.getItem('li') !== ''
       ) {
         document.querySelector('.btn-ls').style.display = 'none';
         document.querySelector('.btn-db').style.display = 'block';

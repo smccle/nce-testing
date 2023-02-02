@@ -31,10 +31,13 @@
       document.querySelector('.btn-soo').onclick = function () {
         if (window.localStorage.getItem('offline') !== 'true') {
           window.localStorage.setItem('offline', 'true');
+          setCookie('li', '');
           document.querySelector('.btn-soo').innerHTML = 'Online';
+          window.location.reload();
         } else {
           window.localStorage.setItem('offline', 'false');
           document.querySelector('.btn-soo').innerHTML = 'Offline';
+          window.location.reload();
         }
       };
 
@@ -69,6 +72,13 @@
           }
         }
         return '';
+      }
+
+      function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+        let expires = 'expires=' + d.toUTCString();
+        document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
       }
 
       if (window.location.hostname !== 'flyingcatdeveloper.github.io') {

@@ -124,10 +124,10 @@ if (
         newLink.setAttribute('class', 'project-btn');
         newImg.innerHTML = '...';
         newImg.setAttribute('id', editor + '.img');
-        getImg(data['editor']);
+        getImg(editor);
         newLink.style =
           'color: blue; text-decoration: underline; font-weight: bold; cursor: pointer; font-family: Arial;';
-        newLink.innerHTML = data['editor'];
+        newLink.innerHTML = editor;
         newDAP.setAttribute('id', editor);
         newDAP.innerHTML = 'loading...';
         loadTimestamp(editor);

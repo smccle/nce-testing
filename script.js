@@ -2806,33 +2806,39 @@ settingsBtn.onclick = function () {
 
             var eSplit = editors.split(':');
 
-            eSplit.forEach((editor) => {
-              if (editor === queryString['id']) {
-                if (newVar === '') {
-                  newVar = newVar + txt;
+            if (eSplit.includes(txt) === false) {
+              eSplit.forEach((editor) => {
+                if (editor === queryString['id']) {
+                  if (newVar === '') {
+                    newVar = newVar + txt;
+                  } else {
+                    newVar = newVar + ':' + txt;
+                  }
                 } else {
-                  newVar = newVar + ':' + txt;
+                  if (newVar === '') {
+                    newVar = newVar + editor;
+                  } else {
+                    newVar = newVar + ':' + editor;
+                  }
                 }
-              } else {
-                if (newVar === '') {
-                  newVar = newVar + editor;
-                } else {
-                  newVar = newVar + ':' + editor;
-                }
-              }
-            });
-            var accountData = JSON.parse(
-              window.localStorage.getItem(window.localStorage.getItem('li'))
-            );
-            accountData.editor = newVar;
-            window.localStorage.setItem(
-              window.localStorage.getItem('li'),
-              JSON.stringify(accountData)
-            );
-            del(queryString['id']);
-            set(txt, editordata);
-            window.location.replace('./editor.html?id=' + txt);
-            window.location.reload();
+              });
+
+              var accountData = JSON.parse(
+                window.localStorage.getItem(window.localStorage.getItem('li'))
+              );
+              accountData.editor = newVar;
+              window.localStorage.setItem(
+                window.localStorage.getItem('li'),
+                JSON.stringify(accountData)
+              );
+              del(queryString['id']);
+              set(txt, editordata);
+              location.replace('./editor.html?id=' + txt);
+              location.reload();
+            } else {
+              alert('editor exists.');
+              return;
+            }
           });
         } else {
           submit.innerHTML = 'Save';
